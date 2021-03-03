@@ -1,7 +1,7 @@
 const mongoose = require('mongoose')
-
+const dbURI = process.env.MONGODB_URI || 'mongodb://localhost/blog'
 module.exports = function () {
-    mongoose.connect('mongodb://localhost/blog',{
+    mongoose.connect(dbURI,{
         useNewUrlParser:true,
         useUnifiedTopology:true,
         useCreateIndex:true
