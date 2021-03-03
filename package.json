@@ -4,18 +4,25 @@
   "description": "Blog Site",
   "main": "index.js",
   "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "compression": "^1.7.4",
     "express": "^4.17.1",
+    "helmet": "^4.4.1",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.11.11",
-    "bcryptjs": "^2.4.3",
     "validator": "^13.5.2"
   },
   "devDependencies": {
     "jest": "^26.6.3"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
   },
+  "engines": {
+    "node": "12.18.3"
+  }
+  ,
   "author": "Mohamed Atef",
   "license": "ISC"
 }
