@@ -56,7 +56,7 @@ router.post("/login", async (req, res) => {
         return;
       }
       const token = user.generateToken();
-      res.send(token);
+      res.send({ token: token });
       return;
     } else {
       const user = await User.findOne({ userName: req.body.email });
@@ -73,19 +73,23 @@ router.post("/login", async (req, res) => {
         res.status(401).send("You must confirm your email addresse");
         return;
       }
+      if (!user.isActivate) {
+        res.status(401).send("Your account has been deactivated");
+        return;
+      }
       const token = user.generateToken();
-      res.send(token);
+      res.send({ token: token });
       return;
     }
   } catch (e) {
-    res.status(500).send(`error: ${e}`);
+    res.status(500).send({ error: e });
   }
 });
 
 router.get("/me", auth, async (req, res) => {
   try {
     const user = await User.findById(req.user._id).select("-password -__v");
-    res.send(user);
+    res.send({ user: user });
   } catch (e) {
     res.status(500).send("Failed to get User");
   }
